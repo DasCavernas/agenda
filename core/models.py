@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
-# Create your models here.
+from datetime import datetime
+
+#Create your models here.
 from django.db.models import TextField
 
 
@@ -24,5 +26,11 @@ class Evento(models.Model):
 
     def get_data_input_evento(self):
         return self.date_evento.strftime('%Y-%m-%dT%H:%M')
+
+    def get_evento_atrasado(self):
+        if self.date_evento < datetime.now():
+            return True
+        else:
+            return False
 
 
